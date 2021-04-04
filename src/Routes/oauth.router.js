@@ -23,8 +23,8 @@ passport.use(new GitHubStrategy({
         callbackURL: `http://localhost:${config.port}/api/oauth/github/callback`
     },
     function(accessToken, refreshToken, profile, done) {
-        console.log(profile)
-        return done(null, profile);
+        console.log(accessToken);
+        return done(null, accessToken);
         /*         User.findOrCreate({ githubId: profile.id }, function(err, user) {
                     return done(err, user);
                 }); */
