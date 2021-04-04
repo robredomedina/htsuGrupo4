@@ -1,4 +1,5 @@
 const clientModel = require("../Models/client.model");
+const hotspots = require("../Utils/hotspots");
 const price = require("../Utils/price");
 
 const create = async (req, res) => {
@@ -23,15 +24,14 @@ const create = async (req, res) => {
     if (clientExists) {
       return res.status(400).json("Client already exists");
     } else {
-      // newClient.Hotspots_asteroids(newClient.Latitude, newClient.Longitude)
-      newClient.Hotspot_asteroids = 10;
+      newClient.Hotspots_asteroids = hotspots(newClient.Latitude, newClient.Longitude)
       newClient.Price = price(newClient.Age, newClient.Hotspot_asteroids);
       clientModel.create(newClient);
       return res.status(201).json(newClient);
     }
   } catch (err) {
     console.log(err);
-  };
+  }
 };
 
 const get = async (req, res) => {
@@ -58,7 +58,7 @@ const findAll = async (req, res) => {
 const addList = async (req, res) => {
   const newClients = req.body.newClients;
   let errorInList = false;
-  newClients.forEach ( (newClient) => {
+  newClients.forEach((newClient) => {
     if (
       !newClient.Name ||
       !newClient.Lastname ||
@@ -70,7 +70,7 @@ const addList = async (req, res) => {
       newClient.price = 0;
       errorInList = true;
     } else {
-      newClient.Hotspot_asteroids = 10;
+      newClient.Hotspots_asteroids = hotspots(newClient.Latitude, newClient.Longitude)
       newClient.Price = price(newClient.Age, newClient.Hotspot_asteroids);
     }
   });

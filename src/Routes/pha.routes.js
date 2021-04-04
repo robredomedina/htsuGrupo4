@@ -7,14 +7,14 @@ const {
   findAll,
   remove,
   update,
-} = require('../Controllers/pha.controller');
+} = require("../Controllers/pha.controller");
 
 router
   .get("/findAll", findAll)
   .get("/find/:PHAName", findByFullName)
-  .put("/add", add)
-  .put("/addList", addList)
-  .post("/update/:PHAId", update)
+  .post("/add", add)
+  .post("/addList", addList)
+  .put("/update/:PHAId", update)
   .delete("/remove/:PHAId", remove);
 
 module.exports = router;
