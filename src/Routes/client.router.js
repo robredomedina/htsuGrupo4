@@ -3,7 +3,9 @@ const clientController = require("../Controllers/client.controller");
 
 const router = Router();
 
-router.route("/").get(clientController.findAll);
+router.route("/")
+    .get(clientController.findAll)
+    .post(clientController.create);
 
 router.route("/addList").post(clientController.addList);
 

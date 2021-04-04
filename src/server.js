@@ -3,8 +3,8 @@ const { json, urlencoded } = require("body-parser");
 const morgan = require("morgan");
 const cors = require("cors");
 require("dotenv").config();
-const config = require("./config/config.js");
-require("./config/mongo");
+const config = require("./Config/config.js");
+require("./Config/mongo");
 const clientRouter = require('./Routes/client.router');
 
 const path = require("path");

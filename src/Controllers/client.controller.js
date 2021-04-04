@@ -1,12 +1,14 @@
-const userModel = require("../Models/user.model");
+const userModel = require("../Models/client.model");
 const price = require('../Utils/price')
 
 const create = (req, res) => {
     const newClient = req.body;
     // newClient.hotspots_asteroids(newClient.latitude, newClient.longitude)
-    newClient.price = price(newClient.age, newClient.hotspots_asteroids);
+    newClient.hotspot_asteroids = 10;
+    newClient.price = price(newClient.age, newClient.hotspot_asteroids);
+    console.log(newClient);
     userModel.create(newClient);
-    return res.status(201);
+    return res.status(201).json(newClient);
 }
 
 const get = async (req, res) => {
@@ -31,7 +33,13 @@ const findAll = async (req, res) => {
 };
 
 const addList = (req, res) => {
-  const usersCreated = userModel.addList(req.body.clients);
+  newClients = req.body.newClients;
+  newClients.forEach((newClient) => {
+        // newClient.hotspots_asteroids(newClient.latitude, newClient.longitude)
+        newClient.hotspot_asteroids = 10;
+        newClient.price = price(newClient.age, newClient.hotspot_asteroids);
+  });
+  const usersCreated = userModel.addList(newClients);
   return res.status(200).json(usersCreated);
 };
 
