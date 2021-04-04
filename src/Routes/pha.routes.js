@@ -7,7 +7,7 @@ const {
   findAll,
   remove,
   update,
-} = require('../Controllers/PHA');
+} = require('../Controllers/pha.controller');
 
 router
   .get("/findAll", findAll)

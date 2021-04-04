@@ -6,7 +6,7 @@ require("dotenv").config();
 const config = require("./Config/config.js");
 require("./Config/mongo");
 const clientRouter = require("./Routes/client.router");
-const phaRouter = require("./Routes/PHA")
+const phaRouter = require("./Routes/pha.routes")
 const csvToJSON = require("./Utils/csvToJSON");
 
 const path = require("path");

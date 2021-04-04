@@ -1,4 +1,4 @@
-const PHAModel = require('../Models/PHA')
+const PHAModel = require('../Models/pha.model')
 
 const PHAMethods = {
   add: async ( req, res ) => {
