@@ -3,15 +3,15 @@ const router = express.Router();
 const {
   add,
   addList,
-  find,
+  findByFullName,
   findAll,
   remove,
   update,
-} = require("../controllers/PHA.js");
+} = require('../Controllers/PHA');
 
 router
   .get("/findAll", findAll)
-  .get("/find", find)
+  .get("/find/:PHAName", findByFullName)
   .put("/add", add)
   .put("/addList", addList)
   .post("/update/:PHAId", update)

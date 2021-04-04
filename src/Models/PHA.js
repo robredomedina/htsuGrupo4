@@ -19,30 +19,34 @@ const PHASchema = mongoose.Schema(
   }
 );
 
-const Asteroid = mongoose.model("PHA", PHASchema);
+const Asteroid = mongoose.model("phas", PHASchema);
 
-const add = (asteroid) => {
-  Asteroid.create(asteroid, (err, docs) => {
-    if (err) {
-      console.log(err);
-      return {
-        error: err.name,
-        msg: err.message,
-      };
-    } else {
-      console.log("Created docs: ", docs);
+const add = async (asteroid) => {
+  try {
+    return createdPHA = await Asteroid.create(asteroid)  
+  } catch (err) {
+    return {
+      error: err.name,
+      msg: err.message
     }
-  });
+  }  
 };
 
-const addList = (asteroids) => {
-  Asteroid.insertMany(asteroids);
+const addList = async (asteroids) => {
+  try {
+    return createdPHAs = await Asteroid.insertMany(asteroids);
+  } catch (err) {
+    return {
+      error: err.name,
+      msg: err.message
+    }
+  }
 };
 
 const findByFullName = async (fullName) => {
   const query = { full_name: fullName };
   try {
-    return await Asteroid.findOne(query);
+    return foundNEA = await Asteroid.findOne(query)
   } catch (err) {
     console.log(err);
     return {
@@ -52,37 +56,38 @@ const findByFullName = async (fullName) => {
   }
 };
 const findAll = async () => {
-  return await Asteroid.find();
+  try {
+    return await Asteroid.find();
+  } catch (err) {
+    return {
+      error: err.name,
+      msg: err.message,
+    };
+  }
 };
 
 const update = (id, data) => {
   let query = { _id: id };
-  Asteroid.updateOne(query, data, (err, docs) => {
-    if (err) {
-      console.log(err);
-      return {
-        error: err.name,
-        msg: err.message,
-      };
-    } else {
-      console.log("Updated Docs: ", docs);
-    }
-  });
+  try {
+    return Asteroid.updateOne(query, data);
+  } catch (err) {
+    return {
+      error: err.name,
+      msg: err.message,
+    };
+  }
 };
 
 const remove = (id) => {
   let query = { _id: id };
-  Asteroid.deleteOne(query, (err, docs) => {
-    if (err) {
-      console.log("error making request: ", err);
-      return {
-        error: err.name,
-        msg: err.message,
-      };
-    } else {
-      console.log("Deleted Doc: ", docs);
-    }
-  });
+  try {
+    return Asteroid.deleteOne(query);
+  } catch (err) {
+    return {
+      error: err.name,
+      msg: err.message,
+    };
+  };
 };
 
 module.exports = {
