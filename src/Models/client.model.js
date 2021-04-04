@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 
 
 const clientModelSchema = mongoose.Schema({
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-    age: { type: Number, required: true },
-    latitude: { type: Number, required: true },
-    longitude: { type: Number, required: true },
-    hotspot_asteroids: { type: Number, required: true },
-    price: { type: Number, required: true }
+    Name: { type: String, required: true },
+    Lastname: { type: String, required: true },
+    Age: { type: Number, required: true },
+    Latitude: { type: Number, required: true },
+    Longitude: { type: Number, required: true },
+    Hotspot_asteroids: { type: Number, required: true },
+    Price: { type: Number, required: true }
 });
 
 

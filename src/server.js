@@ -6,6 +6,7 @@ require("dotenv").config();
 const config = require("./Config/config.js");
 require("./Config/mongo");
 const clientRouter = require('./Routes/client.router');
+const csvToJSON = require('./Utils/csvToJSON');
 
 const path = require("path");
 const { request } = require("express");
