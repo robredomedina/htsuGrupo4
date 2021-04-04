@@ -53,14 +53,11 @@ const addList = (clients) => {
 const get = async (id) => {
   return await Client.findById(id);
 };
-<<<<<<< HEAD
-=======
 
 const getByName = async (name) => {
   const query = { Name: name };
   return await Client.find(query);
 };
->>>>>>> Aejo-Issue1
 
 module.exports = {
   create,
@@ -69,8 +66,5 @@ module.exports = {
   findAll,
   addList,
   get,
-<<<<<<< HEAD
-=======
   getByName,
->>>>>>> Aejo-Issue1
 };
