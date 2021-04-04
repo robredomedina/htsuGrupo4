@@ -24,9 +24,13 @@ const create = async (req, res) => {
     if (clientExists) {
       return res.status(400).json("Client already exists");
     } else {
-      newClient.Hotspots_asteroids = hotspots(newClient.Latitude, newClient.Longitude)
-      newClient.Price = price(newClient.Age, newClient.Hotspot_asteroids);
-      clientModel.create(newClient);
+      const Hotspot_asteroids = await hotspots(newClient.Latitude, newClient.Longitude)
+        .then((Hotspot_asteroids) => {
+          newClient.Hotspot_asteroids = Hotspot_asteroids
+          newClient.Price = price(newClient.Age, Hotspot_asteroids);
+          clientModel.create(newClient);
+        })
+
       return res.status(201).json(newClient);
     }
   } catch (err) {
@@ -56,29 +60,37 @@ const findAll = async (req, res) => {
 };
 
 const addList = async (req, res) => {
-  const newClients = req.body.newClients;
-  let errorInList = false;
-  newClients.forEach((newClient) => {
-    if (
-      !newClient.Name ||
-      !newClient.Lastname ||
-      !newClient.Age ||
-      !newClient.Latitude ||
-      !newClient.Longitude
-    ) {
-      newClient.Hotspot_asteroids = 0;
-      newClient.price = 0;
-      errorInList = true;
+  try {
+    const newClients = req.body.newClients;
+    let errorInList = false;
+    newClients.forEach((newClient, i) => {
+      if (
+        !newClient.Name ||
+        !newClient.Lastname ||
+        !newClient.Age ||
+        !newClient.Latitude ||
+        !newClient.Longitude
+      ) {
+        newClient.Hotspot_asteroids = 0;
+        newClient.price = 0;
+        errorInList = true;
+      } else {
+        hotspots(newClient.Latitude, newClient.Longitude)
+          .then((Hotspot_asteroids) => {
+            newClient.Hotspot_asteroids = Hotspot_asteroids
+            newClient.Price = price(newClient.Age, Hotspot_asteroids);
+            console.log("test2: ", newClient);
+          })
+      }
+    });
+    console.log("test: ", newClients);
+    if (errorInList) {
+      return res.status(400).json("There were invalid clients in the list");
     } else {
-      newClient.Hotspots_asteroids = hotspots(newClient.Latitude, newClient.Longitude)
-      newClient.Price = price(newClient.Age, newClient.Hotspot_asteroids);
+      return res.status(201).json("ok");
     }
-  });
-  if (errorInList) {
-    return res.status(400).json("There were invalid clients in the list");
-  } else {
-    const clientsCreated = clientModel.addList(newClients);
-    return res.status(201).json(clientsCreated);
+  } catch (err) {
+    console.log(err);
   }
 };
 

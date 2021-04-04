@@ -22,7 +22,7 @@ test("Given a set of coordinates and a pha that are within the same square, shou
         "ma": 8.160598893 
     }
 
-    await request(app).post('/api/phas/add').send(pha);
+    await request(app).post('/api/phas/add').send(pha).set('Authorization', process.env.BEARER_TOKEN);
 
     const answer = await hotspots(coordinates.lat, coordinates.long);
 
@@ -48,7 +48,7 @@ test("Given a set of coordinates and a pha that are not within the same square b
         "ma": 8.160598893 
     }
 
-    await request(app).post('/api/phas/add').send(pha);
+    await request(app).post('/api/phas/add').send(pha).set('Authorization', process.env.BEARER_TOKEN);
 
     const answer = await hotspots(coordinates.lat, coordinates.long);
 
@@ -74,7 +74,7 @@ test("Given a set of coordinates and a pha that are not within the same square b
         "ma": 8.160598893 
     }
 
-    await request(app).post('/api/phas/add').send(pha);
+    await request(app).post('/api/phas/add').send(pha).set('Authorization', process.env.BEARER_TOKEN);
 
     const answer = await hotspots(coordinates.lat, coordinates.long);
 
