@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 mongoose.set("useCreateIndex", true);
-mongoose.set( 'useUnifiedTopology', true)
+mongoose.set("useUnifiedTopology", true);
 mongoose.promise = global.Promise;
 async function removeAllCollections() {
   const collections = Object.keys(mongoose.connection.collections);
@@ -42,5 +42,5 @@ module.exports = {
       await dropAllCollections();
       await mongoose.connection.close();
     });
-  }
+  },
 };
