@@ -6,6 +6,7 @@ require("dotenv").config();
 const config = require("./Config/config.js");
 require("./Config/mongo");
 const clientRouter = require("./Routes/client.router");
+const phaRouter = require("./Routes/PHA")
 const csvToJSON = require("./Utils/csvToJSON");
 
 const path = require("path");
@@ -24,6 +25,7 @@ app.use(express.json());
 app.disable("x-powered-by");
 
 app.use("/api/clients", clientRouter);
+app.use("/api/phas", phaRouter);
 
 const start = async () => {
   try {
