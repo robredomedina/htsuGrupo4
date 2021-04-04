@@ -1,8 +1,4 @@
-const get = (req, res) => {
-    //console.log("reached here")
-    // The request will be redirected to GitHub for authentication, so this
-    // function will not be called.
-};
+
 
 // GET /auth/github/callback
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -15,6 +11,5 @@ const cb = (req, res) => {
 };
 
 module.exports = {
-    get,
     cb
 };

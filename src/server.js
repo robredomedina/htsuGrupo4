@@ -37,9 +37,12 @@ const protection = (req, res, next) => {
 
 app.use("/api/clients", protection, clientRouter);
 app.use("/api/oauth", oauthRouter);
-app.use("/api/phas", protection, phaRouter);
+app.use("/api/phas", protection, phaRouter)
 
+app.get("/", (req, res) => {
 
+    res.send("done")
+})
 
 const start = async() => {
     try {
