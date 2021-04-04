@@ -5,6 +5,7 @@ const cors = require("cors");
 require("dotenv").config();
 const config = require("./config/config.js");
 require("./config/mongo");
+const clientRouter = require('./Routes/client.router');
 
 const path = require("path");
 const { request } = require("express");
@@ -21,6 +22,8 @@ app.use(express.static("."));
 app.use(express.json())
 
 app.disable("x-powered-by");
+
+app.use('/api/clients', clientRouter);
 
 
 const start = async () => {
