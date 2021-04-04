@@ -12,7 +12,7 @@ const clientModelSchema = mongoose.Schema({
 
 const Client = mongoose.model("ClientModel", clientModelSchema);
 
-const create = async (client) => {
+const create = (client) => {
   Client.create(client, function (err, docs) {
     if (err) {
       console.log(err);
@@ -53,6 +53,14 @@ const addList = (clients) => {
 const get = async (id) => {
   return await Client.findById(id);
 };
+<<<<<<< HEAD
+=======
+
+const getByName = async (name) => {
+  const query = { Name: name };
+  return await Client.find(query);
+};
+>>>>>>> Aejo-Issue1
 
 module.exports = {
   create,
@@ -61,4 +69,8 @@ module.exports = {
   findAll,
   addList,
   get,
+<<<<<<< HEAD
+=======
+  getByName,
+>>>>>>> Aejo-Issue1
 };
