@@ -4,8 +4,8 @@ const clientModelSchema = mongoose.Schema({
   Name: { type: String, required: true },
   Lastname: { type: String, required: true },
   Age: { type: Number, required: true },
-  Latitude: { type: Number, required: true },
-  Longitude: { type: Number, required: true },
+  Latitude: { type: Number, required: true, min: -90, max: 90 },
+  Longitude: { type: Number, required: true, min: -180, max: 180 },
   Hotspot_asteroids: { type: Number, required: true },
   Price: { type: Number, required: true },
 });
@@ -47,7 +47,7 @@ const findAll = async () => {
 };
 
 const addList = (clients) => {
-  Client.insertMany(clients);
+  Client.insertMany(clients, { ordered: true });
 };
 
 const get = async (id) => {

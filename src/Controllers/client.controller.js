@@ -26,7 +26,6 @@ const create = async (req, res) => {
       // newClient.Hotspots_asteroids(newClient.Latitude, newClient.Longitude)
       newClient.Hotspot_asteroids = 10;
       newClient.Price = price(newClient.Age, newClient.Hotspot_asteroids);
-      console.log(newClient);
       clientModel.create(newClient);
       return res.status(201).json(newClient);
     }
@@ -59,9 +58,7 @@ const findAll = async (req, res) => {
 const addList = async (req, res) => {
   const newClients = req.body.newClients;
   let errorInList = false;
-  let allFailed = 0;
   newClients.forEach ( (newClient) => {
-    console.log('i: ', i);
     if (
       !newClient.Name ||
       !newClient.Lastname ||
@@ -69,18 +66,18 @@ const addList = async (req, res) => {
       !newClient.Latitude ||
       !newClient.Longitude
     ) {
+      newClient.Hotspot_asteroids = 0;
+      newClient.price = 0;
       errorInList = true;
-      allFailed++;
-
+    } else {
+      newClient.Hotspot_asteroids = 10;
+      newClient.Price = price(newClient.Age, newClient.Hotspot_asteroids);
     }
   });
-  const clientsCreated = clientModel.addList(newClients);
-  if (allFailed === newClients.length) {
-    return res.status(400).json("Could not create list");
-  }
   if (errorInList) {
-    return res.status(201).json("There were invalid or already exisiting clients in the list");
+    return res.status(400).json("There were invalid clients in the list");
   } else {
+    const clientsCreated = clientModel.addList(newClients);
     return res.status(201).json(clientsCreated);
   }
 };
