@@ -19,4 +19,77 @@ const PHASchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("PHA", NEASchema);
+const Asteroid = mongoose.model("PHA", PHASchema);
+
+const add = (asteroid) => {
+  Asteroid.create(asteroid, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return {
+        error: err.name,
+        msg: err.message,
+      };
+    } else {
+      console.log("Created docs: ", docs);
+    }
+  });
+};
+
+const addList = (asteroids) => {
+  Asteroid.insertMany(asteroids);
+};
+
+const findByFullName = async (fullName) => {
+  const query = { full_name: fullName };
+  try {
+    return await Asteroid.findOne(query);
+  } catch (err) {
+    console.log(err);
+    return {
+      error: err.name,
+      msg: err.message,
+    };
+  }
+};
+const findAll = async () => {
+  return await Asteroid.find();
+};
+
+const update = (id, data) => {
+  let query = { _id: id };
+  Asteroid.updateOne(query, data, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return {
+        error: err.name,
+        msg: err.message,
+      };
+    } else {
+      console.log("Updated Docs: ", docs);
+    }
+  });
+};
+
+const remove = (id) => {
+  let query = { _id: id };
+  Asteroid.deleteOne(query, (err, docs) => {
+    if (err) {
+      console.log("error making request: ", err);
+      return {
+        error: err.name,
+        msg: err.message,
+      };
+    } else {
+      console.log("Deleted Doc: ", docs);
+    }
+  });
+};
+
+module.exports = {
+  add,
+  addList,
+  findByFullName,
+  findAll,
+  remove,
+  update,
+};
