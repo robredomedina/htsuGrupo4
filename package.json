@@ -1,31 +1,36 @@
 {
-    "name": "hack-that-startup2-individual",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "start": "nodemon src/index.js",
-        "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/robredomedina/htsuGrupo4.git"
-    },
-    "dependencies": {
-        "cors": "^2.8.5",
-        "csvtojson": "^2.0.10",
-        "dotenv": "^8.2.0",
-        "express": "^4.17.1",
-        "express-jwt": "^6.0.0",
-        "install": "^0.13.0",
-        "mongoose": "^5.11.13",
-        "morgan": "^1.10.0",
-        "npm": "^7.6.2",
-        "passport": "^0.4.1",
-        "passport-github2": "^0.1.12"
-    },
-    "devDependencies": {
-        "nodemon": "^2.0.7",
-        "prettier": "^2.2.1"
-    }
+  "name": "hack-that-startup2-individual",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage --detectOpenHandles",
+    "test:watch": "jest --watch",
+    "start": "nodemon src/index.js",
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robredomedina/htsuGrupo4.git"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "csvtojson": "^2.0.10",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "install": "^0.13.0",
+    "keplerjs": "^1.0.8",
+    "mongoose": "^5.11.13",
+    "morgan": "^1.10.0",
+    "npm": "^7.6.2",
+    "passport": "^0.4.1",
+    "passport-github2": "^0.1.12"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
+    "supertest": "^6.1.3"
+  }
 }

@@ -7,6 +7,7 @@ const config = require("./Config/config.js");
 require("./Config/mongo");
 const clientRouter = require("./Routes/client.router");
 const oauthRouter = require("./Routes/oauth.router");
+const phaRouter = require("./Routes/pha.routes");
 const csvToJSON = require("./Utils/csvToJSON");
 const passport = require("passport");
 
@@ -36,13 +37,9 @@ const protection = (req, res, next) => {
 
 app.use("/api/clients", protection, clientRouter);
 app.use("/api/oauth", oauthRouter);
+app.use("(api/phas", protection, phaRouter);
 
-app.get("/", (req, res) => {
 
-    console.log(req.user)
-    console.log(req.isAuthenticated())
-    res.send("done")
-})
 
 const start = async() => {
     try {
