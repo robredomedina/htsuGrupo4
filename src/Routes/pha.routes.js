@@ -14,7 +14,7 @@ router
   .get("/find/:PHAName", findByFullName)
   .post("/add", add)
   .post("/addList", addList)
-  .put("/update/:PHAId", update)
+  .patch("/update/:PHAId", update)
   .delete("/remove/:PHAId", remove);
 
 module.exports = router;
